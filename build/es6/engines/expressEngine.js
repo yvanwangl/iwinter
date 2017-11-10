@@ -20,7 +20,7 @@ export default class ExpressEngine extends Engine {
         files.map(file => {
             self.addRouterMap(require(file).default);
         });
-        return self.router.routes();
+        return self.router;
     }
     addRouterMap(Controller) {
         //读取根路径

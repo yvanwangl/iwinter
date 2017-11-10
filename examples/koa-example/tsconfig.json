@@ -5,7 +5,8 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": "../",
+    "outDir": "build",
+    "rootDir": "../../",
     "sourceMap": true,
     "inlineSources": false,
     "emitDecoratorMetadata": true,
@@ -14,9 +15,6 @@
     "noImplicitAny": false,
     "typeRoots": [
       "node_modules/@types"
-    ],
-    "types": [
-      "node"
     ]
   },
   "include": [

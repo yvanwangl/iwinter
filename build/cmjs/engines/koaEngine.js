@@ -22,7 +22,7 @@ class KoaEngine extends engine_1.Engine {
         files.map(file => {
             self.addRouterMap(require(file).default);
         });
-        return self.router;
+        return self.router.routes();
     }
     addRouterMap(Controller) {
         //读取根路径

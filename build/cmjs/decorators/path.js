@@ -13,7 +13,7 @@ const engineType = Reflect.getMetadata(engine_1.engineSymbolKey, engine_1.Engine
 exports.rootPathSymbolKey = Symbol.for('winter:rootPath');
 exports.pathSymbolKey = Symbol.for('winter:path');
 exports.methodsSymbolKey = Symbol.for('winter:methods');
-exports.path = (path) => {
+exports.Path = (path) => {
     return (target, propertyKey, decorator) => {
         if (arguments.length == 1) {
             Reflect.defineMetadata(exports.rootPathSymbolKey, path, target);

@@ -1,4 +1,7 @@
 import 'reflect-metadata';
+import { Path } from './decorators/path';
+import { GET, POST, PUT, DELETE } from './decorators/http-method';
+export { Path, GET, POST, PUT, DELETE };
 export default class Winter {
     constructor(options) {
         let { engine, router, dir } = options;

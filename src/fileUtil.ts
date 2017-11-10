@@ -7,7 +7,7 @@ export function scanDir(dir: string) {
         dir = path.join(rootDir, dir);
     }
 
-    if (!fs.existsSync) {
+    if (!fs.existsSync(dir)) {
         console.error(`Can not find directory: ${dir}`);
     }
 

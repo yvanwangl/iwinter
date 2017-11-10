@@ -1,15 +1,14 @@
 import { Engine, engineSymbolKey } from '../engines/engine';
 
-const engineType = Reflect.getMetadata(engineSymbolKey, Engine.prototype);
-
 export const rootPathSymbolKey = Symbol.for('winter:rootPath');
 export const pathSymbolKey = Symbol.for('winter:path');
 export const methodsSymbolKey = Symbol.for('winter:methods');
 
-export const path = (path: string): Function => {
+export const Path = (path: string): Function => {
+    const engineType = Reflect.getMetadata(engineSymbolKey, Engine.prototype);
     return (target: any, propertyKey: string, decorator: TypedPropertyDescriptor<Function>) => {
-        if (arguments.length == 1) {
-            Reflect.defineMetadata(rootPathSymbolKey, path, target);
+        if (propertyKey == undefined && decorator==undefined) {
+            Reflect.defineMetadata(rootPathSymbolKey, path, target.prototype);
         } else {
             let methods = Reflect.getMetadata(methodsSymbolKey, target) || [];
             methods.push(propertyKey);
