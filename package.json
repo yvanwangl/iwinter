@@ -29,5 +29,8 @@
     "reflect-metadata": "^0.1.10",
     "ts-node": "^3.3.0",
     "typescript": "^2.6.1"
+  },
+  "devDependencies": {
+    "ts-node": "^3.3.0"
   }
 }
