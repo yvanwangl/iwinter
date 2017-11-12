@@ -132,7 +132,7 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     if (originObject) {
                         Object.keys(originObject).map(key => params[originObject[key]] = { req, res, next });
                     }
-                    let result = oldMethod.call(this.params);
+                    let result = oldMethod.apply(this, params);
                     if (result instanceof Promise) {
                         result.then(
                             (fulfilled) => {
