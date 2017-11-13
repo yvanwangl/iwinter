@@ -1,6 +1,6 @@
 # Winter 一个路由转控制器的 Nodejs 库
 
->A restful router controller library for node.
+>A restful router -> controller library for node.
 
 Winter 为了让使用者以更优雅的姿势进行路由的编写。名称的由来：
 >The winter is coming !
@@ -31,7 +31,7 @@ router.route('/')
 ```
 使用winter之后可以更优雅的编写路由 :)
 ```
-import {Path, GET, POST, PathParam, BodyParam} from '../../../../src/index';
+import {Path, GET, POST, PathParam, BodyParam} from 'winter';
 
 @Path('/api/posts')
 class OrdersController {
@@ -60,7 +60,7 @@ export default OrdersController;
 `*` Typescript 用户<br>
 `*` Express / Koa 用户<br>
 
-### [中文文档]()
+========================================== ============================================== =========================================
 
 ### Winter 安装：
 ```
@@ -119,25 +119,28 @@ new Winter({
 
 ### API
 
-1`.` 支持路径装饰器 `Path`。 `Path` 是一个装饰器工厂函数，接收两个参数: `@Path(path: string, permission?: Function)`, `permission` 为权限拦截函数，其参数为原始请求参数，用于权限验证，返回值： `true`->验证成功；`false`->验证失败。<br>
+1`.` 支持路径装饰器 `Path`。<br>
+`Path` 是一个装饰器工厂函数，接收两个参数: `@Path(path: string, permission?: Function)`, `permission` 为权限拦截函数，其参数为原始请求参数，用于权限验证，返回值： `true`->验证成功；`false`->验证失败。可以进行控制器级别及路径级别的权限验证。<br>
 2`.` 支持 `GET POST PUT DELETE` 方法，可使用装饰器 `@GET @POST @PUT @DELETE`<br>
 3`.` 支持获取路径参数、查询参数、post请求体及原始请求对象 ` PathParam, QueryParam, BodyParam, ReqParam, ResParam, CtxParam, NextParam, OriginParam `。<br>
 
-Express | Koa 中使用 `@PathParam` 获取路径参数, `@QueryParam` 获取查询参数, `@BodyParam` 获取请求体数据;<br>
+Express | Koa 中使用 `@PathParam` 获取路径参数, `@QueryParam` 获取查询参数, `@BodyParam` 获取请求体数据 ;<br>
+
 Express 环境中使用 `@ReqParam, @ResParam, @NextParam` 可以用于分别获取原始参数，也可通过 `@OriginParam` 获取原始参数对象 `{req, res, next}`;<br>
+
 Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数，也可通过 `@OriginParam` 获取原始参数对象 `{ctx, next}`.
 之所以暴露原始请求对象是为了方便进行一些自由度更大的操作，例如重定向等。
 
 示例：<br>
 ```
-import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from '../../../../src/index';
+import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'winter';
 import {authController} from '../auth';
 
 @Path('/api/posts', authController)
 class PostController {
 
     @GET
-    @Path('/:id/:name', (ctx, next)=> ~~ctx.params.id > 20)
+    @Path('/:id/:name', (ctx, next)=> ~~ctx.params.id > 20)	//Path(path:string, permission: Function)
     getAllPosts(@PathParam('id') id: number, @PathParam('name') name: string, @CtxParam('ctx') ctx: any){
         //ctx.response.redirect('/users');
         return [{
