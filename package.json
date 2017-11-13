@@ -12,22 +12,21 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yvanwangl/winter.git"
+    "url": "git+https://github.com/yvanwangl/iwinter.git"
   },
   "keywords": [],
   "author": "Yvanwang <googolewang@gmail.com> <https://blog.yvanwang.com>",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/yvanwangl/winter/issues"
+    "url": "https://github.com/yvanwangl/iwinter/issues"
   },
-  "homepage": "https://github.com/yvanwangl/winter#readme",
+  "homepage": "https://github.com/yvanwangl/iwinter#readme",
   "dependencies": {
     "@types/koa-router": "^7.0.24",
     "@types/node": "^8.0.50",
     "@types/reflect-metadata": "0.0.5",
     "koa-router": "^7.2.1",
     "reflect-metadata": "^0.1.10",
-    "ts-node": "^3.3.0",
     "typescript": "^2.6.1"
   },
   "devDependencies": {
