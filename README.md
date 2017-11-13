@@ -140,7 +140,7 @@ Express 环境中使用 `@ReqParam, @ResParam, @NextParam` 可以用于分别获
 Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数，也可通过 `@OriginParam` 获取原始参数对象 `{ctx, next}`.
 之所以暴露原始请求对象是为了方便进行一些自由度更大的操作，例如重定向等。
 
-示例：<br>
+### 使用示例
 ```
 import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'iwinter';
 import {PostModel} from '../models/PostModel';
@@ -171,6 +171,9 @@ export default PostController;
 ```
 在 Express 中 `getAllPosts` 方法需要返回一个立即值 或 Promise 对象；<br>
 在 Koa 中 `getAllPosts` 方法可以使用 `async/await`。<br>
+
+[Express 示例](https://github.com/yvanwangl/iwinter/tree/master/examples/express-example)<br>
+[Koa 示例](https://github.com/yvanwangl/iwinter/tree/master/examples/koa-example)<br>
 
 项目会不断完善，如果有问题欢迎提 Issues
 

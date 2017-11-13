@@ -1,3 +1,5 @@
 /node_modules
 /examples/express-example/node_modules
+/examples/express-example/npm-debug.log
 /examples/koa-example/node_modules
+/examples/koa-example/npm-debug.log

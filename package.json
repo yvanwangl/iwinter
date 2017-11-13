@@ -1,6 +1,6 @@
 {
   "name": "iwinter",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "A restful router -> controller library for node.",
   "main": "build/cmjs/index.js",
   "module": "build/es6/index.js",
