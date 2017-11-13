@@ -1,5 +1,5 @@
 {
-  "name": "winter",
+  "name": "iwinter",
   "version": "0.1.0",
   "description": "A restful router -> controller library for node.",
   "main": "build/cmjs/index.js",
