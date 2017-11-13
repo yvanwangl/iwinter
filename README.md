@@ -2,7 +2,7 @@
 
 > A restful router -> controller library for node.<br>
 
-<font color=#A52A2A>由于已经存在一个 npm 包叫 winter , 所以安装的时候要这么安装 `npm install --save iwinter`</font>
+<font color=#A52A2A>由于已经存在一个 npm 包 winter , 所以安装的时候要这么安装 `npm install --save iwinter`</font>
 
 Winter 为了让使用者以更优雅的姿势进行路由的编写。名称的由来：
 >The winter is coming !
@@ -33,7 +33,7 @@ router.route('/')
 ```
 使用winter之后可以更优雅的编写路由 :)
 ```
-import {Path, GET, POST, PathParam, BodyParam} from 'winter';
+import {Path, GET, POST, PathParam, BodyParam} from 'iwinter';
 
 @Path('/api/orders')
 class OrdersController {
@@ -144,7 +144,7 @@ Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数
 
 示例：<br>
 ```
-import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'winter';
+import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'iwinter';
 import {PostModel} from '../models/PostModel';
 import {authController} from '../auth';
 
