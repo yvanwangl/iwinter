@@ -64,14 +64,14 @@ export default OrdersController;
 
 ### Winter 安装：
 ```
-npm install --save winter
+npm install --save iwinter
 ```
 
 ### Winter 引入：
 ```
-import Winter from 'winter';
+import Winter from 'iwinter';
 OR
-const Winter = require('winter');
+const Winter = require('iwinter');
 ```
 
 ### Koa 中如何使用：
