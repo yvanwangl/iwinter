@@ -7,7 +7,7 @@ import { PathParam, QueryParam, BodyParam, ReqParam, ResParam, CtxParam, NextPar
 export { Path, GET, POST, PUT, DELETE };
 export { PathParam, QueryParam, BodyParam, ReqParam, ResParam, CtxParam, NextParam, OriginParam };
 
-export default class Winter {
+export default class IWinter {
 
     private router: any;
     private dir: string;
