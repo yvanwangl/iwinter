@@ -2,6 +2,7 @@
 
 > A restful router -> controller library for node.<br>
 > <font color=#A52A2A>由于已经存在一个npm包叫winter, 所以安装的时候要这么安装 `npm install --save iwinter`</font>
+
 <font color=#A52A2A>由于已经存在一个npm包叫winter, 所以安装的时候要这么安装 `npm install --save iwinter`</font>
 
 Winter 为了让使用者以更优雅的姿势进行路由的编写。名称的由来：
