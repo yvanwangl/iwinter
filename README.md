@@ -1,6 +1,7 @@
 # Winter 一个路由转控制器的 Nodejs 库
 
->A restful router -> controller library for node.
+> A restful router -> controller library for node.
+> <font color=red>由于已经存在一个npm包叫winter, 所以安装的时候要这么安装 `npm install --save iwinter`<font>
 
 Winter 为了让使用者以更优雅的姿势进行路由的编写。名称的由来：
 >The winter is coming !
