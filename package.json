@@ -1,7 +1,7 @@
 {
   "name": "winter",
   "version": "0.1.0",
-  "description": "",
+  "description": "A restful router -> controller library for node.",
   "main": "build/cmjs/index.js",
   "module": "build/es6/index.js",
   "scripts": {
@@ -15,7 +15,7 @@
     "url": "git+https://github.com/yvanwangl/winter.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "Yvanwang <googolewang@gmail.com> <https://blog.yvanwang.com>",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/yvanwangl/winter/issues"
