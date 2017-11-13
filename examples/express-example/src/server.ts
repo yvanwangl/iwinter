@@ -10,12 +10,21 @@ let router = express.Router();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
-new Winter({
+//路由挂载到app上
+// new Winter({
+//     engine: 'express',
+//     router: app,
+//     dir: path.join(__dirname, 'controller'),
+//     prefix: ''
+// }).controller();
+
+//以中间件的形式使用
+app.use(new Winter({
     engine: 'express',
-    router: app,
+    router: router,
     dir: path.join(__dirname, 'controller'),
     prefix: ''
-}).controller();
+}).controller());
 
 app.listen(9000);
 console.log('app started at port 9000...');

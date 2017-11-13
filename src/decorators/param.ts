@@ -1,4 +1,5 @@
 export const pathParamSymbolKey = Symbol.for('winter:pathParam');
+export const queryParamSymbolKey = Symbol.for('winter:queryParam');
 export const bodyParamSymbolKey = Symbol.for('winter:bodyParam');
 export const reqParamSymbolKey = Symbol.for('winter:reqParam');
 export const resParamSymbolKey = Symbol.for('winter:resParam');
@@ -17,6 +18,7 @@ const genParam = (symbolKey: symbol): Function=> {
 };
 
 export const PathParam = genParam(pathParamSymbolKey);
+export const QueryParam = genParam(queryParamSymbolKey);
 export const BodyParam = genParam(bodyParamSymbolKey);
 export const CtxParam = genParam(ctxParamSymbolKey);
 export const NextParam = genParam(nextParamSymbolKey);

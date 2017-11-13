@@ -1,6 +1,7 @@
 import { Engine, engineSymbolKey } from '../engines/baseEngine';
 import {
     pathParamSymbolKey,
+    queryParamSymbolKey,
     bodyParamSymbolKey,
     reqParamSymbolKey,
     resParamSymbolKey,
@@ -51,10 +52,15 @@ export const Path = (path: string, authFunc?: Function): Function => {
                         }
                     }
                     let params = [];
+                    //路径参数
                     let pathParams = Reflect.getMetadata(pathParamSymbolKey, target, propertyKey);
-                    //查询参数
                     if (pathParams) {
                         Object.keys(pathParams).map(key => params[pathParams[key]] = ctx.params[key]);
+                    }
+                    //查询参数
+                    let queryParams = Reflect.getMetadata(queryParamSymbolKey, target, propertyKey);
+                    if(queryParams) {
+                        Object.keys(queryParams).map(key => params[queryParams[key]] = ctx.query);
                     }
                     //请求体body
                     let bodyParams = Reflect.getMetadata(bodyParamSymbolKey, target, propertyKey);
@@ -103,9 +109,14 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     }
                     let params = [];
                     let pathParams = Reflect.getMetadata(pathParamSymbolKey, target, propertyKey);
-                    //查询参数
+                    //路径参数
                     if (pathParams) {
                         Object.keys(pathParams).map(key => params[pathParams[key]] = req.params[key]);
+                    }
+                    //查询参数
+                    let queryParams = Reflect.getMetadata(queryParamSymbolKey, target, propertyKey);
+                    if(queryParams) {
+                        Object.keys(queryParams).map(key => params[queryParams[key]] = req.query);
                     }
                     //请求体body
                     let bodyParams = Reflect.getMetadata(bodyParamSymbolKey, target, propertyKey);
@@ -133,19 +144,15 @@ export const Path = (path: string, authFunc?: Function): Function => {
                         Object.keys(originObject).map(key => params[originObject[key]] = { req, res, next });
                     }
                     let result = oldMethod.apply(this, params);
-                    if (result instanceof Promise) {
-                        result.then(
-                            (fulfilled) => {
-                                res.send(fulfilled);
-                            }, 
-                            (rejected) => {
-                                console.error(rejected);
-                                res.status(500).send(rejected);
-                            }
-                        );
-                    }else {
-                        res.send(result);
-                    }
+                    Promise.resolve(result).then(
+                        (fulfilled) => {
+                            res.send(fulfilled);
+                        }, 
+                        (rejected) => {
+                            console.error(rejected);
+                            res.status(500).send(rejected);
+                        }
+                    );
                 };
             }
         }
