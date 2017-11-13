@@ -22,7 +22,7 @@ export default class IWinter {
         this.router = router;
         this.dir = dir;
         this.prefix = prefix || '';
-        this.WinterEngine = require(`./engines/${engine.toLowerCase()}Engine.ts`).default;
+        this.WinterEngine = require(`./engines/${engine.toLowerCase()}Engine`).default;
     }
 
     controller() {
