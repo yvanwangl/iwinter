@@ -3,7 +3,7 @@ import * as Reflect from "reflect-metadata";
 import * as Koa from 'koa';
 import * as koaBody from 'koa-body';
 import * as Router from 'koa-router';
-import Winter from '../../../src/index';
+import IWinter from '../../../src/index';
 import * as path from 'path';
 
 const app = new Koa();
@@ -19,7 +19,7 @@ app.use(async (ctx, next) => {
 app.use(koaBody());
 
 //controller
-app.use(new Winter({
+app.use(new IWinter({
     engine: 'koa',
     router: new Router(),
     dir: path.join(__dirname, 'controller')
