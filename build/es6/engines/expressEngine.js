@@ -1,10 +1,6 @@
-import { Engine, engineSymbolKey } from './engine';
-import { scanDir } from '../fileUtil';
-import { httpMethodSymbolKey } from '../decorators/http-method';
-import { rootPathSymbolKey, pathSymbolKey, methodsSymbolKey } from '../decorators/path';
-Reflect.defineMetadata(engineSymbolKey, 'expressEngine', Engine.prototype);
+import { Engine, engineSymbolKey } from './baseEngine';
 export default class ExpressEngine extends Engine {
-    constructor(router, dir) {
+    constructor(router, dir, prefix = '') {
         super();
         //如果没有传递路由，则报错
         if (!router) {
@@ -13,28 +9,12 @@ export default class ExpressEngine extends Engine {
         }
         this.router = router;
         this.dir = dir;
+        this.prefix = prefix;
+        Reflect.defineMetadata(engineSymbolKey, 'expressEngine', Engine.prototype);
     }
     controller() {
-        let self = this;
-        let files = scanDir(self.dir);
-        files.map(file => {
-            self.addRouterMap(require(file).default);
-        });
-        return self.router;
-    }
-    addRouterMap(Controller) {
-        //读取根路径
-        let self = this;
-        let instance = new Controller();
-        let prototype = Controller.prototype;
-        let rootPath = Reflect.getMetadata(rootPathSymbolKey, prototype);
-        let methods = Reflect.getMetadata(methodsSymbolKey, prototype);
-        methods.map(methodName => {
-            let method = instance[methodName];
-            let httpMethod = Reflect.getMetadata(httpMethodSymbolKey, prototype, methodName);
-            let path = Reflect.getMetadata(pathSymbolKey, prototype, methodName);
-            self.router[httpMethod](`${rootPath}${path}`, method);
-        });
+        super.controller();
+        return this.router;
     }
 }
 //# sourceMappingURL=expressEngine.js.map

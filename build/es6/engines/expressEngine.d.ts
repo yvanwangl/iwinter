@@ -1,8 +1,5 @@
-import { Engine } from './engine';
+import { Engine } from './baseEngine';
 export default class ExpressEngine extends Engine {
-    private router;
-    private dir;
-    constructor(router: any, dir: string);
+    constructor(router: any, dir: string, prefix?: string);
     controller(): any;
-    addRouterMap(Controller: any): void;
 }

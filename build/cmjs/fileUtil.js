@@ -7,7 +7,7 @@ function scanDir(dir) {
         let rootDir = getRootDir();
         dir = path.join(rootDir, dir);
     }
-    if (!fs.existsSync) {
+    if (!fs.existsSync(dir)) {
         console.error(`Can not find directory: ${dir}`);
     }
     let files = fs.readdirSync(dir);

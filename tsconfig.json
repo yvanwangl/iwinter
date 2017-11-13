@@ -5,7 +5,7 @@
     "target": "es6",
     "module": "commonjs",
     "moduleResolution": "node",
-    "rootDir": "../",
+    "rootDir": "src",
     "sourceMap": true,
     "inlineSources": false,
     "emitDecoratorMetadata": true,
