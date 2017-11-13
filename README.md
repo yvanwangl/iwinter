@@ -6,9 +6,9 @@ Winter 为了让使用者以更优雅的姿势进行路由的编写。名称的�
 >The winter is coming !
 
 ### 谁适合使用 Winter:
-`*` Nodejs 用户
-`*` Typescript 用户
-`*` Express / Koa 用户
+`*` Nodejs 用户<br>
+`*` Typescript 用户<br>
+`*` Express / Koa 用户<br>
 
 ### [中文文档]()
 
@@ -34,7 +34,7 @@ app.use(new Winter({
 ```
 
 ### Express 中如何使用：
-1`.` 路由挂载到app上
+1`.` 路由挂载到app上<br>
 ```
 new Winter({
     engine: 'express',
@@ -43,7 +43,7 @@ new Winter({
     prefix: ''
 }).controller();
 ```
-2`.` 以中间件的形式使用
+2`.` 以中间件的形式使用<br>
 ```
 app.use(new Winter({
     engine: 'express',
@@ -62,18 +62,18 @@ new Winter({
     prefix: ''
 })
 ```
-1`.` engine 使用的环境类型，可选项 'express | koa', 必需
-2`.` router 路由对象，配置参照 (Koa 中如何使用 | Express 中如何使用)，必需
-3`.` dir 控制器文件路径，必需
-4`.` 网关统一前缀，例如 '/api'，非必需
+1`.` engine 使用的环境类型，可选项 'express | koa', 必需<br>
+2`.` router 路由对象，配置参照 (Koa 中如何使用 | Express 中如何使用)，必需<br>
+3`.` dir 控制器文件路径，必需<br>
+4`.` 网关统一前缀，例如 '/api'，非必需<br>
 
 ### API
 
-1`.` 支持路径装饰器 `Path`
-1`.` 支持 `GET POST PUT DELETE` 方法
-2`.` 支持获取路径参数、查询参数、post请求体及原始请求对象 ` PathParam, QueryParam, BodyParam, ReqParam, ResParam, CtxParam, NextParam, OriginParam `
+1`.` 支持路径装饰器 `Path`<br>
+1`.` 支持 `GET POST PUT DELETE` 方法<br>
+2`.` 支持获取路径参数、查询参数、post请求体及原始请求对象 ` PathParam, QueryParam, BodyParam, ReqParam, ResParam, CtxParam, NextParam, OriginParam `<br>
 
-示例：
+示例：<br>
 ```
 import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from '../../../../src/index';
 import {authController} from '../auth';
