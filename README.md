@@ -1,10 +1,8 @@
-# Winter 一个路由转控制器的 Nodejs 库
+# IWinter 一个路由转控制器的 Nodejs 库
 
 > A restful router -> controller library for node.<br>
 
-<font color=#A52A2A>由于已经存在一个 npm 包 winter , 所以安装的时候要这么安装 `npm install --save iwinter`</font>
-
-Winter 为了让使用者以更优雅的姿势进行路由的编写。名称的由来：
+IWinter 为了让使用者以更优雅的姿势进行路由的编写。名称的由来：
 >The winter is coming !
 
 以前需要这样编写路由 :(
@@ -31,7 +29,7 @@ router.route('/')
 		};
         ...
 ```
-使用winter之后可以更优雅的编写路由 :)
+使用 iwinter 之后可以更优雅的编写路由 :)
 ```
 import {Path, GET, POST, PathParam, BodyParam} from 'iwinter';
 
@@ -57,30 +55,30 @@ export default OrdersController;
 
 ```
 
-### 谁适合使用 Winter:
+### 谁适合使用 IWinter:
 `*` Nodejs 用户<br>
 `*` Typescript 用户<br>
 `*` Express / Koa 用户<br>
 
 ========================================== ============================================== ==========================================
 
-### Winter 安装：
+### IWinter 安装：
 ```
 npm install --save iwinter
 ```
 
-### Winter 引入：
+### IWinter 引入：
 ```
-import Winter from 'iwinter';
+import IWinter from 'iwinter';
 OR
-const Winter = require('iwinter');
+const IWinter = require('iwinter');
 ```
 
 ### Koa 中如何使用：
 ```
 import * as Router from 'koa-router';
 ...
-app.use(new Winter({
+app.use(new IWinter({
     engine: 'koa',
     router: new Router(),
     dir: path.join(__dirname, 'controller')
@@ -95,7 +93,7 @@ import * as express from 'express';
 let app = express();
 let router = express.Router();
 ...
-new Winter({
+new IWinter({
     engine: 'express',
     router: app,
     dir: path.join(__dirname, 'controller'),
@@ -104,7 +102,7 @@ new Winter({
 ```
 2`.` 以中间件的形式使用<br>
 ```
-app.use(new Winter({
+app.use(new IWinter({
     engine: 'express',
     router: router,
     dir: path.join(__dirname, 'controller'),
@@ -114,7 +112,7 @@ app.use(new Winter({
 
 ### 构造函数参数配置说明(options: {})
 ```
-new Winter({
+new IWinter({
     engine: 'express',
     router: router,
     dir: path.join(__dirname, 'controller'),
