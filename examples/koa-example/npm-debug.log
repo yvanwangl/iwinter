@@ -1,0 +1,111 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'D:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'D:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'install',
+1 verbose cli   '--save',
+1 verbose cli   '@types/koa-body' ]
+2 info using npm@3.10.10
+3 info using node@v6.11.3
+4 silly loadCurrentTree Starting
+5 silly install loadCurrentTree
+6 silly install readLocalPackageData
+7 silly fetchPackageMetaData @types/koa-body
+8 silly fetchNamedPackageData @types/koa-body
+9 silly mapToRegistry name @types/koa-body
+10 silly mapToRegistry scope (from package name) @types
+11 verbose mapToRegistry no registry URL found in name for scope @types
+12 silly mapToRegistry using default registry
+13 silly mapToRegistry registry https://registry.npmjs.org/
+14 silly mapToRegistry data Result {
+14 silly mapToRegistry   raw: '@types/koa-body',
+14 silly mapToRegistry   scope: '@types',
+14 silly mapToRegistry   escapedName: '@types%2fkoa-body',
+14 silly mapToRegistry   name: '@types/koa-body',
+14 silly mapToRegistry   rawSpec: '',
+14 silly mapToRegistry   spec: 'latest',
+14 silly mapToRegistry   type: 'tag' }
+15 silly mapToRegistry uri https://registry.npmjs.org/@types%2fkoa-body
+16 verbose request uri https://registry.npmjs.org/@types%2fkoa-body
+17 verbose request no auth needed
+18 info attempt registry request try #1 at 16:15:01
+19 verbose request using bearer token for auth
+20 verbose request id 2a662f64e3660a13
+21 http request GET https://registry.npmjs.org/@types%2fkoa-body
+22 http 404 https://registry.npmjs.org/@types%2fkoa-body
+23 verbose headers { 'content-type': 'application/json',
+23 verbose headers   'cache-control': 'max-age=0',
+23 verbose headers   'content-length': '2',
+23 verbose headers   'accept-ranges': 'bytes',
+23 verbose headers   date: 'Mon, 13 Nov 2017 08:13:27 GMT',
+23 verbose headers   via: '1.1 varnish',
+23 verbose headers   connection: 'keep-alive',
+23 verbose headers   'x-served-by': 'cache-nrt6125-NRT',
+23 verbose headers   'x-cache': 'MISS',
+23 verbose headers   'x-cache-hits': '0',
+23 verbose headers   'x-timer': 'S1510560807.529995,VS0,VE599',
+23 verbose headers   vary: 'Accept-Encoding' }
+24 silly get cb [ 404,
+24 silly get   { 'content-type': 'application/json',
+24 silly get     'cache-control': 'max-age=0',
+24 silly get     'content-length': '2',
+24 silly get     'accept-ranges': 'bytes',
+24 silly get     date: 'Mon, 13 Nov 2017 08:13:27 GMT',
+24 silly get     via: '1.1 varnish',
+24 silly get     connection: 'keep-alive',
+24 silly get     'x-served-by': 'cache-nrt6125-NRT',
+24 silly get     'x-cache': 'MISS',
+24 silly get     'x-cache-hits': '0',
+24 silly get     'x-timer': 'S1510560807.529995,VS0,VE599',
+24 silly get     vary: 'Accept-Encoding' } ]
+25 silly fetchPackageMetaData Error: Registry returned 404 for GET on https://registry.npmjs.org/@types%2fkoa-body
+25 silly fetchPackageMetaData     at makeError (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+25 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+25 silly fetchPackageMetaData     at Request._callback (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+25 silly fetchPackageMetaData     at Request.self.callback (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+25 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+25 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+25 silly fetchPackageMetaData     at Request.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+25 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+25 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+25 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+25 silly fetchPackageMetaData  error for @types/koa-body { Error: Registry returned 404 for GET on https://registry.npmjs.org/@types%2fkoa-body
+25 silly fetchPackageMetaData     at makeError (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+25 silly fetchPackageMetaData     at CachingRegistryClient.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+25 silly fetchPackageMetaData     at Request._callback (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+25 silly fetchPackageMetaData     at Request.self.callback (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+25 silly fetchPackageMetaData     at emitTwo (events.js:106:13)
+25 silly fetchPackageMetaData     at Request.emit (events.js:191:7)
+25 silly fetchPackageMetaData     at Request.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+25 silly fetchPackageMetaData     at emitOne (events.js:96:13)
+25 silly fetchPackageMetaData     at Request.emit (events.js:188:7)
+25 silly fetchPackageMetaData     at IncomingMessage.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12) pkgid: '@types/koa-body', statusCode: 404, code: 'E404' }
+26 silly rollbackFailedOptional Starting
+27 silly rollbackFailedOptional Finishing
+28 silly runTopLevelLifecycles Finishing
+29 silly install printInstalled
+30 verbose stack Error: Registry returned 404 for GET on https://registry.npmjs.org/@types%2fkoa-body
+30 verbose stack     at makeError (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:302:12)
+30 verbose stack     at CachingRegistryClient.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:280:14)
+30 verbose stack     at Request._callback (D:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:210:14)
+30 verbose stack     at Request.self.callback (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:187:22)
+30 verbose stack     at emitTwo (events.js:106:13)
+30 verbose stack     at Request.emit (events.js:191:7)
+30 verbose stack     at Request.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1048:10)
+30 verbose stack     at emitOne (events.js:96:13)
+30 verbose stack     at Request.emit (events.js:188:7)
+30 verbose stack     at IncomingMessage.<anonymous> (D:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:969:12)
+31 verbose statusCode 404
+32 verbose pkgid @types/koa-body
+33 verbose cwd G:\Project\winter\examples\koa-example
+34 error Windows_NT 10.0.10586
+35 error argv "D:\\Program Files\\nodejs\\node.exe" "D:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "install" "--save" "@types/koa-body"
+36 error node v6.11.3
+37 error npm  v3.10.10
+38 error code E404
+39 error 404 Registry returned 404 for GET on https://registry.npmjs.org/@types%2fkoa-body
+40 error 404
+41 error 404 '@types/koa-body' is not in the npm registry.
+42 error 404 You should bug the author to publish it (or use the name yourself!)
+43 error 404 Note that you can also install from a
+44 error 404 tarball, folder, http url, or git url.
+45 verbose exit [ 1, true ]

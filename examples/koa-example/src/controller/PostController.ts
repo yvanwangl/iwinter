@@ -1,26 +1,18 @@
-import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from '../../../../src/index';
+import {Path, GET, POST, PathParam, QueryParam, BodyParam, CtxParam, NextParam, OriginParam} from '../../../../src/index';
 import {authController} from '../auth';
 
 @Path('/api/posts', authController)
 class PostController {
 
     @GET
-    @Path('/:id/:name', (ctx, next)=> ~~ctx.params.id > 20)
-    getAllPosts(@PathParam('id') id: number, @PathParam('name') name: string, @CtxParam('ctx') ctx: any){
+    @Path('/:name/:id', (ctx, next)=> ~~ctx.params.id > 20)
+    getAllPosts(@PathParam('id') id: number, @PathParam('name') name: string, @QueryParam('user') user: any, @CtxParam('ctx') ctx: any){
         //ctx.response.redirect('/users');
         return [{
-            id: id, name, content: 'test', author: 'wangyafei', comments: []
+            id: id, name, content: 'test', author: 'wangyafei', comments: [], userName: user.name, userAge: user.age
         }];
     }
 
-    @GET
-    @Path('/:id')
-    getPostById(@PathParam('id') id: number, @PathParam('name') name: string, @NextParam('next') next: Function){
-        next();
-        return [{
-            id: id, name, content: 'test', author: 'wangyafei', comments: []
-        }];
-    }
 
     @GET
     @Path('/name/id/:id')
