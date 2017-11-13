@@ -128,7 +128,7 @@ new Winter({
 
 1`.` 支持路径装饰器 `Path`。<br>
 `Path` 是一个装饰器工厂函数，接收两个参数: `@Path(path: string, permission?: Function)`, <br>
-`permission` 为权限拦截函数，其参数为原始请求参数，用于权限验证，返回值： `true`->验证成功；`false`->验证失败。<br>
+`permission` 为权限拦截函数，其参数为原始请求参数 (req, req, next) | (ctx, next)，用于权限验证，返回值： `true`->验证成功；`false`->验证失败。<br>
 可以进行控制器级别及路径级别的权限验证。<br>
 2`.` 支持 `GET POST PUT DELETE` 方法，可使用装饰器 `@GET @POST @PUT @DELETE`<br>
 3`.` 支持获取路径参数、查询参数、post请求体及原始请求对象 ` PathParam, QueryParam, BodyParam, ReqParam, ResParam, CtxParam, NextParam, OriginParam `。<br>
