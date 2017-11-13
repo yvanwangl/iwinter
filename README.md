@@ -33,12 +33,12 @@ router.route('/')
 ```
 import {Path, GET, POST, PathParam, BodyParam} from 'winter';
 
-@Path('/api/posts')
+@Path('/api/orders')
 class OrdersController {
 
     @GET
-    @Path('/:id/:name', (ctx, next)=> ~~ctx.params.id > 20)
-    getAllPosts(@PathParam('id') id: number, @PathParam('name') name: string){
+    @Path('/:name/:id', (ctx, next)=> ~~ctx.params.id > 20)
+    getAllOrders(@PathParam('id') id: number, @PathParam('name') name: string){
         return [{
             id: id, name, content: 'test', author: 'test', comments: []
         }];
@@ -46,8 +46,8 @@ class OrdersController {
 
     @POST
     @Path('/add')
-    addPost(@BodyParam('post') post: object){
-        return post;
+    addPost(@BodyParam('order') order: object){
+        return order;
     }
 }
 
@@ -143,13 +143,14 @@ Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数
 示例：<br>
 ```
 import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'winter';
+import {PostModel} from '../models/PostModel';
 import {authController} from '../auth';
 
 @Path('/api/posts', authController)
 class PostController {
 
     @GET
-    @Path('/:id/:name', (ctx, next)=> ~~ctx.params.id > 20)	//Path(path:string, permission: Function)
+    @Path('/:name/:id', (ctx, next)=> ~~ctx.params.id > 20)	//Path(path:string, permission: Function)
     getAllPosts(@PathParam('id') id: number, @PathParam('name') name: string, @CtxParam('ctx') ctx: any){
         //ctx.response.redirect('/users');
         return [{
@@ -159,8 +160,10 @@ class PostController {
 
     @POST
     @Path('/add')
-    addPost(@BodyParam('post') post: object){
-        return post;
+    async addPost(@BodyParam('post') post: object){
+    	let newPost = new Post(post);
+        let result = await newPost.save();
+        return result;
     }
 }
 
