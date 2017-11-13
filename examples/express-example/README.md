@@ -1,6 +1,6 @@
 # Express 中的使用示例
 
-1`.` `git clone https://github.com/yvanwangl/winter.git`
+1`.` `git clone https://github.com/yvanwangl/iwinter.git`
 
 2`.` `npm install`
 
