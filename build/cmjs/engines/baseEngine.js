@@ -17,7 +17,7 @@ class Engine {
         let self = this;
         let instance = new Controller();
         let prototype = Controller.prototype;
-        let rootPath = Reflect.getMetadata(path_1.rootPathSymbolKey, prototype);
+        let rootPath = Reflect.getMetadata(path_1.rootPathSymbolKey, prototype) || '';
         let methods = Reflect.getMetadata(path_1.methodsSymbolKey, prototype);
         methods.map(methodName => {
             let method = instance[methodName];
