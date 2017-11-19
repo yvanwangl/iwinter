@@ -23,7 +23,7 @@ class Engine {
             let method = instance[methodName];
             let httpMethod = Reflect.getMetadata(http_method_1.httpMethodSymbolKey, prototype, methodName);
             let path = Reflect.getMetadata(path_1.pathSymbolKey, prototype, methodName);
-            self.router[httpMethod](`${self.prefix}${rootPath}${path}`, method);
+            self.router[httpMethod](`${self.prefix}${rootPath}${path}`, method(instance));
         });
     }
 }

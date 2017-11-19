@@ -28,7 +28,7 @@ exports.Path = (path, authFunc) => {
             Reflect.defineMetadata(exports.pathSymbolKey, path, target, propertyKey);
             let oldMethod = decorator.value;
             if (engineType == 'koaEngine') {
-                decorator.value = (ctx, next) => __awaiter(this, void 0, void 0, function* () {
+                decorator.value = (instance) => (ctx, next) => __awaiter(this, void 0, void 0, function* () {
                     /**
                      * 权限拦截，
                      * 判断是否有控制器权限
@@ -82,12 +82,12 @@ exports.Path = (path, authFunc) => {
                     if (originObject) {
                         Object.keys(originObject).map(key => params[originObject[key]] = { ctx, next });
                     }
-                    let result = yield oldMethod.apply(this, params);
+                    let result = yield oldMethod.apply(instance, params);
                     ctx.response.body = result;
                 });
             }
             else if (engineType == 'expressEngine') {
-                decorator.value = (req, res, next) => {
+                decorator.value = (instance) => (req, res, next) => {
                     /**
                      * 权限拦截，
                      * 判断是否有控制器权限
@@ -144,7 +144,7 @@ exports.Path = (path, authFunc) => {
                     if (originObject) {
                         Object.keys(originObject).map(key => params[originObject[key]] = { req, res, next });
                     }
-                    let result = oldMethod.apply(this, params);
+                    let result = oldMethod.apply(instance, params);
                     Promise.resolve(result).then((fulfilled) => {
                         res.send(fulfilled);
                     }, (rejected) => {

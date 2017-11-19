@@ -28,7 +28,7 @@ export const Path = (path: string, authFunc?: Function): Function => {
             Reflect.defineMetadata(pathSymbolKey, path, target, propertyKey);
             let oldMethod = decorator.value;
             if (engineType == 'koaEngine') {
-                decorator.value = async (ctx, next) => {
+                decorator.value = (instance) => async (ctx, next) => {
                     /**
                      * 权限拦截，
                      * 判断是否有控制器权限
@@ -59,7 +59,7 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     }
                     //查询参数
                     let queryParams = Reflect.getMetadata(queryParamSymbolKey, target, propertyKey);
-                    if(queryParams) {
+                    if (queryParams) {
                         Object.keys(queryParams).map(key => params[queryParams[key]] = ctx.query);
                     }
                     //请求体body
@@ -82,11 +82,11 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     if (originObject) {
                         Object.keys(originObject).map(key => params[originObject[key]] = { ctx, next });
                     }
-                    let result = await oldMethod.apply(this, params);
+                    let result = await oldMethod.apply(instance, params);
                     ctx.response.body = result;
                 }
             } else if (engineType == 'expressEngine') {
-                decorator.value = (req, res, next) => {
+                decorator.value = (instance) => (req, res, next) => {
                     /**
                      * 权限拦截，
                      * 判断是否有控制器权限
@@ -115,7 +115,7 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     }
                     //查询参数
                     let queryParams = Reflect.getMetadata(queryParamSymbolKey, target, propertyKey);
-                    if(queryParams) {
+                    if (queryParams) {
                         Object.keys(queryParams).map(key => params[queryParams[key]] = req.query);
                     }
                     //请求体body
@@ -143,11 +143,11 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     if (originObject) {
                         Object.keys(originObject).map(key => params[originObject[key]] = { req, res, next });
                     }
-                    let result = oldMethod.apply(this, params);
+                    let result = oldMethod.apply(instance, params);
                     Promise.resolve(result).then(
                         (fulfilled) => {
                             res.send(fulfilled);
-                        }, 
+                        },
                         (rejected) => {
                             console.error(rejected);
                             res.status(500).send(rejected);

@@ -21,7 +21,7 @@ export class Engine {
             let method = instance[methodName];
             let httpMethod = Reflect.getMetadata(httpMethodSymbolKey, prototype, methodName);
             let path = Reflect.getMetadata(pathSymbolKey, prototype, methodName);
-            self.router[httpMethod](`${self.prefix}${rootPath}${path}`, method);
+            self.router[httpMethod](`${self.prefix}${rootPath}${path}`, method(instance));
         });
     }
 }
