@@ -1,4 +1,6 @@
 # IWinter 一个路由转控制器的 Nodejs 库
+[![npm version](https://badge.fury.io/js/iwinter.svg)](https://badge.fury.io/js/iwinter)
+[![NPM downloads](http://img.shields.io/npm/dy/iwinter.svg?style=flat)](https://www.npmjs.com/package/iwinter)
 
 > A restful router -> controller library for node.<br>
 
