@@ -83,10 +83,7 @@ export const Path = (path: string, authFunc?: Function): Function => {
                         Object.keys(originObject).map(key => params[originObject[key]] = { ctx, next });
                     }
                     let result = await oldMethod.apply(instance, params);
-                    //返回值不为 undefined 则发送响应
-                    if(result != undefined) {
-                        ctx.response.body = result;                        
-                    }
+                    ctx.response.body = result;
                 }
             } else if (engineType == 'expressEngine') {
                 decorator.value = (instance) => (req, res, next) => {
