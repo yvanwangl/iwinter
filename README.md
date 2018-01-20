@@ -161,6 +161,16 @@ Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数
 #### 0.5.0
 iwinter 第一个发布版本。
 
+### 从 0.5.2 升级到 1.0.0
+从 0.5.2 升级到 1.0.0 版本，只需要做一下改变：</br>
+```
+import {Controller} from 'iwinter';
+class PostController extends Controller {
+
+}
+```
+恭喜你！升级完成 :)
+
 ### 使用示例
 ```
 import {Controller, Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'iwinter';
