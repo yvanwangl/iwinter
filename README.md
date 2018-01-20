@@ -33,10 +33,10 @@ router.route('/')
 ```
 使用 iwinter 之后可以更优雅的编写路由 :)
 ```
-import {Path, GET, POST, PathParam, BodyParam} from 'iwinter';
+import {Controller, Path, GET, POST, PathParam, BodyParam} from 'iwinter';
 
 @Path('/api/orders')
-class OrdersController {
+class OrdersController extends Controller {
 
     @GET
     @Path('/:name/:id', (ctx, next)=> ~~ctx.params.id > 20)
@@ -142,14 +142,33 @@ Express 环境中使用 `@ReqParam, @ResParam, @NextParam` 可以用于分别获
 Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数，也可通过 `@OriginParam` 获取原始参数对象 `{ctx, next}`.
 之所以暴露原始请求对象是为了方便进行一些自由度更大的操作，例如重定向等。
 
+### Changelog
+当前最新版本为 1.0.0
+
+#### 1.0.0
+重大改变，增加 Controller 基类，所有的控制器类都需要继承该类</br>
+增加 Controller 基类是为了更加严谨的对控制器类进行判断。</br>
+
+#### 0.5.2
+修复 IWinterController(控制器类) 方法内 this 指向的问题：</br>
+在 0.5.1 版本中， IWinterController 内的方法的 this 指向 path.ts 文件的 exports 对象，在 0.5.2 版本对该问题进行了修复，IWinterController 方法的 this 指向 IWinterController 实例对象。</br>
+
+#### 0.5.1
+修复了 IWinterController(控制器类) 根路径的bug</br>
+在0.5.0版本中，如果 IWinterController 没有装饰器 @Path(path: string) 会导致路由装载错误，
+0.5.1版本中修复该问题。</br>
+
+#### 0.5.0
+iwinter 第一个发布版本。
+
 ### 使用示例
 ```
-import {Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'iwinter';
+import {Controller, Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'iwinter';
 import {PostModel} from '../models/PostModel';
-import {authController} from '../auth';
+import {auth} from '../auth';
 
-@Path('/api/posts', authController)
-class PostController {
+@Path('/api/posts', auth)
+class PostController extends Controller {
 
     @GET
     @Path('/:name/:id', (ctx, next)=> ~~ctx.params.id > 20)	//Path(path:string, permission: Function)

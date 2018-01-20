@@ -1,6 +1,6 @@
 {
   "name": "iwinter",
-  "version": "0.5.4",
+  "version": "1.0.0",
   "description": "A restful router -> controller library for node.",
   "main": "build/cmjs/index.js",
   "module": "build/es6/index.js",
@@ -8,7 +8,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build:cmjs": "tsc -P tsconfig.json --module commonjs --outDir build/cmjs",
     "build:es6": "tsc -P tsconfig.json --module ES6  --outDir build/es6",
-    "build": "npm run build:cmjs & npm run build:es6"
+    "build": "npm run build:cmjs & npm run build:es6",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
