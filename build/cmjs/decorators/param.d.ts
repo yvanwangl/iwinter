@@ -1,0 +1,16 @@
+export declare const pathParamSymbolKey: symbol;
+export declare const queryParamSymbolKey: symbol;
+export declare const bodyParamSymbolKey: symbol;
+export declare const reqParamSymbolKey: symbol;
+export declare const resParamSymbolKey: symbol;
+export declare const ctxParamSymbolKey: symbol;
+export declare const nextParamSymbolKey: symbol;
+export declare const originParamSymbolKey: symbol;
+export declare const PathParam: Function;
+export declare const QueryParam: Function;
+export declare const BodyParam: Function;
+export declare const CtxParam: Function;
+export declare const NextParam: Function;
+export declare const ReqParam: Function;
+export declare const ResParam: Function;
+export declare const OriginParam: Function;

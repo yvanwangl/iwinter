@@ -143,9 +143,9 @@ Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数
 之所以暴露原始请求对象是为了方便进行一些自由度更大的操作，例如重定向等。
 
 ### Changelog
-当前最新版本为 1.0.0
+当前最新版本为 1.0.2
 
-#### 1.0.0
+#### 1.0.2
 重大改变，增加 Controller 基类，所有的控制器类都需要继承该类</br>
 增加 Controller 基类是为了更加严谨的对控制器类进行判断。</br>
 
@@ -161,8 +161,8 @@ Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数
 #### 0.5.0
 iwinter 第一个发布版本。
 
-### 从 0.5.2 升级到 1.0.0
-从 0.5.2 升级到 1.0.0 版本，只需要做一下改变：</br>
+### 从 0.5.2 升级到 1.0.2
+从 0.5.2 升级到 1.0.2 版本，只需要做一下改变：</br>
 ```
 import {Controller} from 'iwinter';
 class PostController extends Controller {
