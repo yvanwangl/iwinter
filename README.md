@@ -171,6 +171,9 @@ class PostController extends Controller {
 ```
 恭喜你！升级完成 :)
 
+### 示例项目
+[recatch-service](https://github.com/yvanwangl/recatch-service) recatch 项目的后端服务，全面使用 iwinter
+
 ### 使用示例
 ```
 import {Controller, Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'iwinter';
