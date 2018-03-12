@@ -1,4 +1,5 @@
 import { Engine, engineSymbolKey } from '../engines/baseEngine';
+import { beforeSymbolKey, afterSymbolKey } from '../decorators/hooks';
 import {
     pathParamSymbolKey,
     queryParamSymbolKey,
@@ -82,7 +83,19 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     if (originObject) {
                         Object.keys(originObject).map(key => params[originObject[key]] = { ctx, next });
                     }
+                    //执行之前获取前置钩子函数并执行
+                    let beforeHook = Reflect.getMetadata(beforeSymbolKey, target, propertyKey);
+                    if(beforeHook && typeof beforeHook == 'function' ) {
+                        beforeHook(ctx, next);
+                    }
+
                     let result = await oldMethod.apply(instance, params);
+
+                    //执行之后获取后置钩子函数并执行
+                    let afterHook = Reflect.getMetadata(afterSymbolKey, target, propertyKey);
+                    if(afterHook && typeof afterHook == 'function' ) {
+                        afterHook(ctx, next);
+                    }
                     ctx.response.body = result;
                 }
             } else if (engineType == 'expressEngine') {
@@ -143,7 +156,19 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     if (originObject) {
                         Object.keys(originObject).map(key => params[originObject[key]] = { req, res, next });
                     }
+                    //执行之前获取前置钩子函数并执行
+                    let beforeHook = Reflect.getMetadata(beforeSymbolKey, target, propertyKey);
+                    if(beforeHook && typeof beforeHook == 'function' ) {
+                        beforeHook(req, res, next);
+                    }
+
                     let result = oldMethod.apply(instance, params);
+
+                    //执行之后获取后置钩子函数并执行
+                    let afterHook = Reflect.getMetadata(afterSymbolKey, target, propertyKey);
+                    if(afterHook && typeof afterHook == 'function' ) {
+                        afterHook(req, res, next);
+                    }
                     Promise.resolve(result).then(
                         (fulfilled) => {
                             res.send(fulfilled);

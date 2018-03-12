@@ -130,9 +130,11 @@ new IWinter({
 
 1`.` 支持路径装饰器 `Path`。<br>
 `Path` 是一个装饰器工厂函数，接收两个参数: `@Path(path: string, permission?: Function)`, <br>
-`permission` 为权限拦截函数，其参数为原始请求参数 (req, req, next) | (ctx, next)，用于权限验证，返回值： `true`->验证成功；`false`->验证失败。<br>
+`permission` 为权限拦截函数，其参数为原始请求参数 Express: (req, req, next) | Koa: (ctx, next)，用于权限验证，返回值： `true`->验证成功；`false`->验证失败。<br>
 可以进行控制器级别及路径级别的权限验证。<br>
+
 2`.` 支持 `GET POST PUT DELETE` 方法，可使用装饰器 `@GET @POST @PUT @DELETE`<br>
+
 3`.` 支持获取路径参数、查询参数、post请求体及原始请求对象 ` PathParam, QueryParam, BodyParam, ReqParam, ResParam, CtxParam, NextParam, OriginParam `。<br>
 
 Express | Koa 中使用 `@PathParam` 获取路径参数, `@QueryParam` 获取查询参数, `@BodyParam` 获取请求体数据 ;<br>
@@ -142,8 +144,14 @@ Express 环境中使用 `@ReqParam, @ResParam, @NextParam` 可以用于分别获
 Koa 环境中使用 `@CtxParam, @NextParam` 可以分别用于获取原始参数，也可通过 `@OriginParam` 获取原始参数对象 `{ctx, next}`.
 之所以暴露原始请求对象是为了方便进行一些自由度更大的操作，例如重定向等。
 
+4`.` 支持 `Before, After` 方法，可以对路由处理函数进行切面编程，其参数为原始请求参数 Express: (req, req, next) | Koa: (ctx, next)，可在请求处理的前置和后置进行业务逻辑处理。<br>
+
 ### Changelog
-当前最新版本为 1.0.2
+当前最新版本为 1.1.0
+
+#### 1.1.0
+增加可以对路由处理函数进行切面编程的钩子函数 `Before、After`，</br>
+可以在路由处理的前后进行相应的业务处理操作。</br>
 
 #### 1.0.2
 重大改变，增加 Controller 基类，所有的控制器类都需要继承该类：</br>
@@ -176,7 +184,7 @@ class PostController extends Controller {
 
 ### 使用示例
 ```
-import {Controller, Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam} from 'iwinter';
+import {Controller, Path, GET, POST, PathParam, BodyParam, CtxParam, NextParam, OriginParam, Before, After} from 'iwinter';
 import {PostModel} from '../models/PostModel';
 import {auth} from '../auth';
 
@@ -185,6 +193,8 @@ class PostController extends Controller {
 
     @GET
     @Path('/:name/:id', (ctx, next)=> ~~ctx.params.id > 20)	//Path(path:string, permission: Function)
+    @Before((ctx, next) => ctx.beforeHook = 'before')
+    @After((ctx, next) => console.log('done'))
     getAllPosts(@PathParam('id') id: number, @PathParam('name') name: string, @CtxParam('ctx') ctx: any){
         //ctx.response.redirect('/users');
         return [{
