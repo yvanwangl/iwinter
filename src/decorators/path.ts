@@ -37,7 +37,7 @@ export const Path = (path: string, authFunc?: Function): Function => {
                      */
                     let controllerAuth = Reflect.getMetadata(rootAuthSymbolKey, target);
                     if (controllerAuth && typeof controllerAuth == 'function') {
-                        let hasAuth = controllerAuth(ctx, next);
+                        let hasAuth = await controllerAuth(ctx, next);
                         if (!hasAuth) {
                             ctx.response.status = 403;
                             ctx.response.body = 'Permission Denied!';
@@ -45,7 +45,7 @@ export const Path = (path: string, authFunc?: Function): Function => {
                         }
                     }
                     if (authFunc && typeof authFunc == 'function') {
-                        let hasAuth = authFunc(ctx, next);
+                        let hasAuth = await authFunc(ctx, next);
                         if (!hasAuth) {
                             ctx.response.status = 403;
                             ctx.response.body = 'Permission Denied!';
@@ -86,7 +86,7 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     //执行之前获取前置钩子函数并执行
                     let beforeHook = Reflect.getMetadata(beforeSymbolKey, target, propertyKey);
                     if(beforeHook && typeof beforeHook == 'function' ) {
-                        beforeHook(ctx, next);
+                        await beforeHook(ctx, next);
                     }
 
                     let result = await oldMethod.apply(instance, params);
@@ -94,12 +94,12 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     //执行之后获取后置钩子函数并执行
                     let afterHook = Reflect.getMetadata(afterSymbolKey, target, propertyKey);
                     if(afterHook && typeof afterHook == 'function' ) {
-                        afterHook(ctx, next);
+                        await afterHook(ctx, next);
                     }
                     ctx.response.body = result;
                 }
             } else if (engineType == 'expressEngine') {
-                decorator.value = (instance) => (req, res, next) => {
+                decorator.value = (instance) => async (req, res, next) => {
                     /**
                      * 权限拦截，
                      * 判断是否有控制器权限
@@ -107,14 +107,14 @@ export const Path = (path: string, authFunc?: Function): Function => {
                      */
                     let controllerAuth = Reflect.getMetadata(rootAuthSymbolKey, target);
                     if (controllerAuth && typeof controllerAuth == 'function') {
-                        let hasAuth = controllerAuth(req, res);
+                        let hasAuth = await controllerAuth(req, res);
                         if (!hasAuth) {
                             res.status(403).send('Permission Denied!');
                             return null;
                         }
                     }
                     if (authFunc && typeof authFunc == 'function') {
-                        let hasAuth = authFunc(req, res);
+                        let hasAuth = await authFunc(req, res);
                         if (!hasAuth) {
                             res.status(403).send('Permission Denied!');
                             return null;
@@ -159,15 +159,15 @@ export const Path = (path: string, authFunc?: Function): Function => {
                     //执行之前获取前置钩子函数并执行
                     let beforeHook = Reflect.getMetadata(beforeSymbolKey, target, propertyKey);
                     if(beforeHook && typeof beforeHook == 'function' ) {
-                        beforeHook(req, res, next);
+                        await beforeHook(req, res, next);
                     }
 
-                    let result = oldMethod.apply(instance, params);
+                    let result = await oldMethod.apply(instance, params);
 
                     //执行之后获取后置钩子函数并执行
                     let afterHook = Reflect.getMetadata(afterSymbolKey, target, propertyKey);
                     if(afterHook && typeof afterHook == 'function' ) {
-                        afterHook(req, res, next);
+                        await afterHook(req, res, next);
                     }
                     Promise.resolve(result).then(
                         (fulfilled) => {
